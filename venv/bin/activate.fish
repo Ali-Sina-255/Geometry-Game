@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/dev/Desktop/Developments/Python/Geo/venv"
+set -gx VIRTUAL_ENV "/home/dev/Desktop/Developments/Python/Geo/Geometry-Game/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
