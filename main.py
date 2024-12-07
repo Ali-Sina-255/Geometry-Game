@@ -1,3 +1,4 @@
+import turtle
 from random import randint
 
 
@@ -24,26 +25,45 @@ class Rectangle:
         return (self.point2.x - self.point1.x) * (self.point2.y - self.point1.y)
 
 
-rectangle = Rectangle(
-    Point(randint(0, 9), randint(0, 9)), Point(randint(10, 19), randint(10, 19))
+class GuiRectangle(Rectangle):
+    def draw(self, canvas):
+        canvas.penup()
+        # got the the certain coordinates
+        canvas.goto(self.point1.x, self.point1.y)
+        # for darwing the
+        canvas.pendown()
+        canvas.forward(100)
+        canvas.left(90)
+        canvas.forward(100)
+        canvas.left(90)
+        canvas.forward(100)
+        canvas.left(90)
+        canvas.forward(100)
+        turtle.done()
+
+
+gui_rectangle = GuiRectangle(
+    Point(randint(0, 400), randint(0, 400)), Point(randint(10, 400), randint(10, 400))
 )
+my_turtle = turtle.Turtle()
+gui_rectangle.draw(my_turtle)
+print(gui_rectangle.area())
+# # Print rectangle coordinates
+# print(
+#     "Rectangle Coordinates: ",
+#     rectangle.point1.x,
+#     ",",
+#     rectangle.point1.y,
+#     "and",
+#     rectangle.point2.x,
+#     ",",
+#     rectangle.point2.y,
+# )
 
-# Print rectangle coordinates
-print(
-    "Rectangle Coordinates: ",
-    rectangle.point1.x,
-    ",",
-    rectangle.point1.y,
-    "and",
-    rectangle.point2.x,
-    ",",
-    rectangle.point2.y,
-)
+# # Get point and area from user
+# user_point = Point(float(input("Guess x: ")), float(input("Guess y: ")))
+# user_area = float(input("Guess rectangle area: "))
 
-# Get point and area from user
-user_point = Point(float(input("Guess x: ")), float(input("Guess y: ")))
-user_area = float(input("Guess rectangle area: "))
-
-# Print out the game result
-print("Your point was inside rectangle: ", user_point.falls_in_rectangle(rectangle))
-print("Your area was off by: ", rectangle.area() - user_area)
+# # Print out the game result
+# print("Your point was inside rectangle: ", user_point.falls_in_rectangle(rectangle))
+# print("Your area was off by: ", rectangle.area() - user_area)
