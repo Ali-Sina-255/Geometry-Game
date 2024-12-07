@@ -32,22 +32,27 @@ class GuiRectangle(Rectangle):
         canvas.goto(self.point1.x, self.point1.y)
         # for darwing the
         canvas.pendown()
-        canvas.forward(100)
+        canvas.forward(self.point2.x - self.point1.x)
         canvas.left(90)
-        canvas.forward(100)
+        canvas.forward(self.point2.y - self.point1.y)
         canvas.left(90)
-        canvas.forward(100)
+        canvas.forward(self.point2.x -  self.point1.x)
         canvas.left(90)
-        canvas.forward(100)
-        turtle.done()
+        canvas.forward(self.point2.y - self.point1.y)
 
+
+
+class GuiPoint(Point):
+    def draw(self,canvas, size=5,color='red'):
+        canvas.penup()
+        canvas.goto(self.z, self.y)
+        canvas.penup()
+        canvas.dot(size=size,color=color)
 
 gui_rectangle = GuiRectangle(
     Point(randint(0, 400), randint(0, 400)), Point(randint(10, 400), randint(10, 400))
 )
-my_turtle = turtle.Turtle()
-gui_rectangle.draw(my_turtle)
-print(gui_rectangle.area())
+
 # # Print rectangle coordinates
 # print(
 #     "Rectangle Coordinates: ",
@@ -60,10 +65,14 @@ print(gui_rectangle.area())
 #     rectangle.point2.y,
 # )
 
-# # Get point and area from user
-# user_point = Point(float(input("Guess x: ")), float(input("Guess y: ")))
-# user_area = float(input("Guess rectangle area: "))
+# Get point and area from user
+user_point = GuiPoint(float(input("Guess x: ")), float(input("Guess y: ")))
+user_area = float(input("Guess rectangle area: "))
 
-# # Print out the game result
-# print("Your point was inside rectangle: ", user_point.falls_in_rectangle(rectangle))
-# print("Your area was off by: ", rectangle.area() - user_area)
+# Print out the game result
+print("Your point was inside rectangle: ", user_point.falls_in_rectangle(rectangle))
+print("Your area was off by: ", rectangle.area() - user_area)
+my_turtle = turtle.Turtle()
+gui_rectangle.draw(my_turtle)
+print(gui_rectangle.area())
+turtle.done()
